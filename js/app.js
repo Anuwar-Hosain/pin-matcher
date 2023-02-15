@@ -23,10 +23,37 @@ document
   .getElementById("calculator")
   .addEventListener("click", function (event) {
     const number = event.target.innerText;
+    const inputNumberField = document.getElementById("inputted-number");
+    const previousInputNumberField = inputNumberField.value;
     if (isNaN(number)) {
-      console.log(number);
+      if (number === "C") {
+        inputNumberField.value = "";
+      } else if (number === "<") {
+        const digits = previousInputNumberField.split("");
+        digits.pop();
+        const remainingDigits = digits.join("");
+        inputNumberField.value = remainingDigits;
+      }
     } else {
-      const inputNumberField = document.getElementById("inputted-number");
-      inputNumberField.value = number;
+      const newInputNumberField = previousInputNumberField + number;
+      inputNumberField.value = newInputNumberField;
     }
   });
+// verity button section
+document.getElementById("verify-btn").addEventListener("click", function () {
+  const displayPinField = document.getElementById("display-pin");
+  const currentDisplayPin = displayPinField.value;
+
+  const inputNumberField = document.getElementById("inputted-number");
+  const inputNumber = inputNumberField.value;
+
+  const pinSuccessBtn = document.getElementById("pin-success");
+  const pinFail = document.getElementById("pin-fail");
+  if (inputNumber === currentDisplayPin) {
+    pinSuccessBtn.style.display = "block";
+    pinFail.style.display = "none";
+  } else {
+    pinFail.style.display = "block";
+    pinSuccessBtn.style.display = "none";
+  }
+});
