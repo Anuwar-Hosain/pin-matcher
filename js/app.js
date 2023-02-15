@@ -52,6 +52,8 @@ document.getElementById("verify-btn").addEventListener("click", function () {
   if (inputNumber === currentDisplayPin) {
     pinSuccessBtn.style.display = "block";
     pinFail.style.display = "none";
+    inputNumberField.value = "";
+    displayPinField.value = "";
   } else {
     pinFail.style.display = "block";
     pinSuccessBtn.style.display = "none";
